@@ -1,6 +1,6 @@
 import getData from './getData'
 import renderGoods from './renderGoods'
-import { searchFilters } from './filters'
+import { searchFilter } from './filters'
 
 let search = () => {
     let searchInput = document.querySelector('.search-wrapper_input');
@@ -9,7 +9,7 @@ let search = () => {
         let value = event.target.value;
 
         getData().then((data) => {
-            renderGoods(searchFilters(data, value))
+            renderGoods(searchFilter(data, value))
         })
     })
 }
