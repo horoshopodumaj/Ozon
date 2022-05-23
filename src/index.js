@@ -1,5 +1,5 @@
-import second from "./modules/second";
+import load from "./modules/load";
 import cart from "./modules/cart";
 
 cart()
-second()
+load()
