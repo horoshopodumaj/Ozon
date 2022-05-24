@@ -10,13 +10,6 @@ export let categoryFilter = (goods, value) => {
     })
 }
 
-
-export let priceFilterMax = (goods, value) => {
-    return goods.filter((goodsItem) => {
-        return goodsItem.price <= value
-    })
-}
-
 export let priceFilter = (goods, min, max) => {
     return goods.filter((goodsItem) => {
         if(min === '' && max === '') {
@@ -31,3 +24,12 @@ export let priceFilter = (goods, min, max) => {
     })
 }
 
+export let hotSaleFilter = (goods, value) => {
+    return goods.filter((goodsItem) => {
+        if (value) {
+            return goodsItem.sale === true
+        } else {
+            return goodsItem 
+        }
+    })
+}
