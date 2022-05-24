@@ -6,6 +6,4 @@ let getData = (str) => {
  
 }
 
-// ?${str ? `search=${str}` : ''}
-
 export default getData
