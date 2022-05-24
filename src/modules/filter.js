@@ -11,13 +11,13 @@ let filter = () => {
 
     maxInput.addEventListener('input', () => {
         getData().then((data) => {
-            renderGoods(priceFilter(data, minInput.value, maxInput.value))
+            renderGoods(priceFilter(hotSaleFilter(data, checkboxInput.checked), minInput.value, maxInput.value))
         })
      });
 
     minInput.addEventListener('input', () => {
         getData().then((data) => {
-            renderGoods(priceFilter(data, minInput.value, maxInput.value))
+            renderGoods(priceFilter(hotSaleFilter(data, checkboxInput.checked), minInput.value, maxInput.value))
         })
     });
 
@@ -29,7 +29,7 @@ let filter = () => {
         }
 
         getData().then((data) => {
-            renderGoods(hotSaleFilter(data, checkboxInput.checked))
+            renderGoods(priceFilter(hotSaleFilter(data, checkboxInput.checked), minInput.value, maxInput.value))
         })
     })
 }
