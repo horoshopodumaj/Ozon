@@ -5,14 +5,16 @@ let cart = () => {
     let cartModal = document.querySelector('.cart');
     let cartCloseBtn = cartModal.querySelector('.cart-close');
     let cartTotal = cartModal.querySelector('.cart-total > span');
-    let goodsWrapper = document.querySelector('.goods') 
+    let goodsWrapper = document.querySelector('.goods');
+    let cartWrapper = document.querySelector('.cart-wrapper');
     
      let openCart = () => {
         let cart = localStorage.getItem('cart') ? 
                 JSON.parse(localStorage.getItem('cart')) : [];
         cartModal.style.display = 'flex';
 
-        renderCart(cart)
+        renderCart(cart);
+
         cartTotal.textContent = cart.reduce((sum, goodItem) => {
             return sum + goodItem.price
         }, 0)
@@ -41,6 +43,31 @@ let cart = () => {
    
         }
     })
+
+    cartWrapper.addEventListener('click', (event) => {
+        if (event.target.classList.contains('btn-primary')){
+            let cart = localStorage.getItem('cart') ? 
+                JSON.parse(localStorage.getItem('cart')) : [];
+
+            let card = event.target.closest('.card');
+            let key = card.dataset.key;
+            let index = cart.findIndex((item) => {
+                return item.id === +key
+            });
+
+            cart.splice(index, 1)
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            renderCart(cart);
+        
+            cartTotal.textContent = cart.reduce((sum, goodItem) => {
+                return sum + goodItem.price
+            }, 0);
+
+        }
+    })
+
 }
 
 export default cart
