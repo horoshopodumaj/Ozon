@@ -1,10 +1,12 @@
 import renderCart from './renderCart'
+import postData from './postData'
 
 let cart = () => {
     let cartBtn = document.getElementById('cart');
     let cartModal = document.querySelector('.cart');
     let cartCloseBtn = cartModal.querySelector('.cart-close');
     let cartTotal = cartModal.querySelector('.cart-total > span');
+    let cartSendBtn = cartModal.querySelector('.cart-confirm');
     let goodsWrapper = document.querySelector('.goods');
     let cartWrapper = document.querySelector('.cart-wrapper');
     
@@ -66,6 +68,19 @@ let cart = () => {
             }, 0);
 
         }
+    })
+
+    cartSendBtn.addEventListener('click', () => {
+        let cart = localStorage.getItem('cart') ? 
+            JSON.parse(localStorage.getItem('cart')) : [];
+
+            postData(cart).then(() => {
+                localStorage.removeItem('cart');
+
+                renderCart([]);
+
+                cartTotal.textContent = 0;
+            })
     })
 
 }
