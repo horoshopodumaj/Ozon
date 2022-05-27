@@ -10,7 +10,7 @@ let cart = () => {
     let goodsWrapper = document.querySelector('.goods');
     let cartWrapper = document.querySelector('.cart-wrapper');
     
-     let openCart = () => {
+    let openCart = () => {
         let cart = localStorage.getItem('cart') ? 
                 JSON.parse(localStorage.getItem('cart')) : [];
         cartModal.style.display = 'flex';
@@ -20,6 +20,10 @@ let cart = () => {
         cartTotal.textContent = cart.reduce((sum, goodItem) => {
             return sum + goodItem.price
         }, 0)
+
+        let counter = document.querySelector('.counter');
+
+        counter.innerHTML = JSON.parse(localStorage.cart).length;
     }
 
     cartBtn.addEventListener('click', openCart);
@@ -42,7 +46,11 @@ let cart = () => {
             cart.push(goodItem);
 
             localStorage.setItem('cart', JSON.stringify(cart));
-   
+
+            let counter = document.querySelector('.counter');
+
+            counter.innerHTML = JSON.parse(localStorage.cart).length;
+
         }
     })
 
@@ -67,6 +75,10 @@ let cart = () => {
                 return sum + goodItem.price
             }, 0);
 
+            let counter = document.querySelector('.counter');
+
+            counter.innerHTML = JSON.parse(localStorage.cart).length;
+
         }
     })
 
@@ -80,7 +92,14 @@ let cart = () => {
                 renderCart([]);
 
                 cartTotal.textContent = 0;
+
+                let counter = document.querySelector('.counter');
+
+                counter.innerHTML = '0';
+                
             })
+
+            
     })
 
 }

@@ -24,6 +24,10 @@ let renderGoods = (goods) => {
         </div>
         `)
     });
+
+    let counter = document.querySelector('.counter');
+
+    counter.innerHTML = JSON.parse(localStorage.cart).length;
     
 }
 
